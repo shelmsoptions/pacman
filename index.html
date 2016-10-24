@@ -83,11 +83,9 @@
             <div id="score">0</div>
             <div id="points">
                 <p>coins = 10pts</p>
-                <p>cherries = 50pts (appears after 6s)</p>
+                <p>cherries = 50pts (appear after 6s)</p>
             </div>
         </div>
-
-
 
 <!-- List of features
         1. js display world
@@ -166,7 +164,7 @@
         if(world[cherries.y][cherries.x] == 0){
             world[cherries.y][cherries.x] = 1.5;
             console.log(world[cherries.y][cherries.x]);
-        }
+        };
     };
     function displayScore(){
         document.getElementById('score').innerHTML = score;
@@ -218,12 +216,20 @@
     setTimeout(displayCherries, 6000);
 
 
-// setInterval(BlinkyMove, 1000);
+// setInterval(BlinkyMove, 2000);
+    // function BlinkyMove(){
+    //     for(bi = 0; bi <= 4; bi++){
+    //         if(world[blinky.x] < 2){
+    //             x--;
+    //         }
+    //          if(world[blinky.y] < 2){
+    //
+    //         }
+    // };
 
 // function BlinkyMove() {
 //     for(bi = 0; bi < 10; bi++){
 //         if(world[blinky.y][blinky.x-1] < 2){
-//             // document.getElementById('pacman').style.left = 50 + 'px';   below is the more better technique
 //             blinky.x--;
 //             return;
 //         }
