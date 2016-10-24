@@ -216,16 +216,17 @@
     setTimeout(displayCherries, 6000);
 
 
-// setInterval(BlinkyMove, 2000);
-    // function BlinkyMove(){
-    //     for(bi = 0; bi <= 4; bi++){
-    //         if(world[blinky.x] < 2){
-    //             x--;
-    //         }
-    //          if(world[blinky.y] < 2){
-    //
-    //         }
-    // };
+    setInterval(BlinkyMove, 1000);
+
+    function BlinkyMove(){
+        for(bi = 0; bi <= 4; bi++){
+            if(world[blinky.y][blinky.x-1] < 2){
+                blinky.x--;
+
+            };
+        };
+        displayBlinky();
+    };
 
 // function BlinkyMove() {
 //     for(bi = 0; bi < 10; bi++){
