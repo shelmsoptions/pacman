@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>PacMan</title>
+        <script src="js/jQuery_2_2_4.js"></script>  <!-- jquery 2.2.4 -->
+        </script>
+        <style>
+        *{
+            margin: 0;
+        }
+        body{
+            background-color: #000;
+            font-size: 0;  /*  one way to eradicate space between divs - subsequent font-size must be set as px (or pt) */
+        }
+        div.row div{
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            /*margin: 0;*/
+        }
+            div.brick{
+                background-color: blue;
+            }
+            div.coin{
+                background: url('assets/coin.gif') no-repeat center;
+                /*background-repeat: no-repeat;*/
+                /*background-position: center;*/
+            }
+            div.empty{
+                background-image: none;
+            }
+        div#pacman{
+            background: url('assets/pacman-moving-orange.gif') no-repeat center;
+            background-size: cover;
+            width: 20px;
+            height: 20px;
+            position: absolute;
+        }
+        div#blinky{
+            background: url('assets/ghost_red_blinky.gif') no-repeat center;
+            background-size: cover;
+            width: 20px;
+            height: 20px;
+            position: absolute;
+        }
+        div#cherries{
+            background: url('assets/cherries.jpg') no-repeat center;
+            background-size: cover;
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            visibility: hidden;
+        }
+        #score{
+            border: 1px solid #fff;
+            color: white;
+            width: 40px;
+            height: 30px;
+            font-size: 15px;
+            line-height: 30px;
+            text-align: center;
+        }
+
+
+        </style>
+        <script type="text/javascript">
+            $(document).ready(function(){
+
+            });
+        </script>
+    </head>
+    <body>      <!--   ***************** BODY **** -->
+        <div id="container">
+            <div id="world"></div>
+            <div id="pacman"></div>
+            <div id="blinky"></div>
+            <div id="cherries"></div>
+            <div id="score">0</div>
+            <!-- <p id="demo"></p> -->
+        </div>
+
+
+
+<!-- List of features
+        1. js display world
+        2. pacman movement -->
+<script type="text/javascript">
+
+    var score = 0;
+
+    var world = [
+        [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
+        [2,1,1,2,2,1,1,2,1,1,1,1,1,1,1,1,1,2],
+        [2,1,1,2,2,2,1,2,1,1,1,1,2,2,2,2,1,2],
+        [2,1,1,1,2,2,1,2,1,1,1,1,1,1,1,1,1,2],
+        [2,1,1,1,1,1,1,2,0,0,0,2,1,2,2,2,1,2],
+        [2,2,2,2,1,1,0,2,2,2,2,2,1,2,2,2,1,2],
+        [2,1,1,1,1,2,1,2,1,1,1,1,1,1,1,1,1,2],
+        [2,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,2],
+        [2,1,1,1,1,2,1,1,1,2,2,1,1,2,2,1,1,2],
+        [2,2,2,2,1,1,1,1,1,2,2,1,1,2,2,1,1,2],
+        [2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,2],
+        [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]
+    ];
+
+    var pacman = {    // js object to store multiple properties
+        x: 6,
+        y: 5
+    };
+    var blinky = {
+        x: 9,
+        y: 4
+    }
+    var cherries = {
+        x: 10,
+        y: 4
+    }
+    var pacmanUnit = document.getElementById('pacman');
+    var blinkyUnit = document.getElementById('blinky');
+
+    function displayWorld(){
+        var output = '';
+        for(i = 0; i<world.length; i++){  //each row
+            output += '\n<div class="row">\n';
+            for(j = 0; j<world[i].length;j++){  //each space within row
+                if(world[i][j] == 2){
+                    output += '<div class="brick"></div>';
+                }
+                else if(world[i][j] == 1){
+                    output += '<div class="coin"></div>';
+                }
+                else if(world[i][j] == 1.5){
+                    output += '<div class="cherries"></div>';
+                }
+                if(world[i][j] == 0){
+                    output += '<div class="empty"></div>';
+                }
+                // output = output + world[i][j];
+            }
+            output += '\n</div>'
+        }
+        // console.log(output);
+        document.getElementById('world').innerHTML = output;
+    }
+
+    function displayPacman(){
+        document.getElementById('pacman').style.top = pacman.y * 20 + 'px';
+        document.getElementById('pacman').style.left = pacman.x * 20 + 'px';
+    };
+    function displayBlinky(){
+        document.getElementById('blinky').style.top = blinky.y * 20 + 'px';
+        document.getElementById('blinky').style.left = blinky.x * 20 + 'px';
+    };
+    function displayCherries(){
+        document.getElementById('cherries').style.visibility = 'visible';
+        document.getElementById('cherries').style.top = cherries.y * 20 + 'px';
+        document.getElementById('cherries').style.left = cherries.x * 20 + 'px';
+        if(world[cherries.y][cherries.x] == 0){
+            world[cherries.y][cherries.x] = 1.5;
+            console.log(world[cherries.y][cherries.x]);
+        }
+    };
+    function displayScore(){
+        document.getElementById('score').innerHTML = score;
+    };
+
+    displayWorld();
+    displayPacman();    // initial pacman display - keep in mind that it needs to be displayed AGAIN for each onkeydown
+    displayBlinky();
+    // displayCherries();
+    displayScore();
+
+
+    //  sooo, when onkeydown property triggers the function,
+    //   the browser passes a var 'e' (or whatever).  onkeydown is discovered using console.dir(document)
+    document.onkeydown = function(e){
+        if(e.keyCode == 37 && world[pacman.y][pacman.x-1] < 2){
+            // reference:  document.getElementById('pacman').style.left = 50 + 'px';   below is the more better technique
+            pacman.x --;
+            pacmanUnit.style.webkitTransform = "rotate(180deg)";
+        }
+        else if(e.keyCode == 39 && world[pacman.y][pacman.x+1] < 2){  //  ** remember '==' is a getter
+            pacman.x ++;
+            pacmanUnit.style.webkitTransform = "rotate(0deg)";
+        }
+        else if(e.keyCode == 38 && world[pacman.y-1][pacman.x] < 2){  //  ** remember '==' is a getter
+            pacman.y --;
+            pacmanUnit.style.webkitTransform = "rotate(-90deg)";
+        }
+        else if(e.keyCode == 40 && world[pacman.y+1][pacman.x] < 2){  //  ** remember '==' is a getter
+            pacman.y ++;
+            pacmanUnit.style.webkitTransform = "rotate(90deg)";
+        }
+        if(world[pacman.y][pacman.x] == 1){
+            world[pacman.y][pacman.x] = 0;
+            displayWorld();
+            score += 10;
+            displayScore();
+        };
+        if(world[pacman.y][pacman.x] == 1.5){
+            world[pacman.y][pacman.x] = 0;
+            document.getElementById('cherries').style.background = 'none';
+            displayWorld();
+            score += 50;
+            displayScore();
+        };
+        displayPacman();
+    };
+
+    setTimeout(displayCherries, 6000);
+
+
+// setInterval(BlinkyMove, 1000);
+
+// function BlinkyMove() {
+//     for(bi = 0; bi < 10; bi++){
+//         if(world[blinky.y][blinky.x-1] < 2){
+//             // document.getElementById('pacman').style.left = 50 + 'px';   below is the more better technique
+//             blinky.x--;
+//             return;
+//         }
+//         console.log(bi);
+//     }
+//         displayBlinky();
+// }
+
+// document.ontimeupdate = function(f){  //  **********
+// };
+// document.onloadstart = function(f){  // use for audio
+// };
+// var x = Math.floor((Math.random() * 4) + 1);
+
+</script>
+
+    </body>
+</html>
