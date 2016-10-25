@@ -122,15 +122,17 @@
 
 // *********   Start ghost testing  *************
     // function startTimer(){};
-    // setInterval(BlinkyMove, 1000);
+
+    setInterval(BlinkyMove, 1000);
+
     // setTimeout(BlinkyMove, 1000);
     //
-    // function BlinkyMove(){
-    //     for(bi = 0; bi < 2; bi++){
-    //         if(world[blinky.y][blinky.x-1] < 2){
-    //             blinky.x--;
-    //             displayBlinky();
-    //         };
+    function BlinkyMove(){
+        for(bi = 0; bi < 2; bi++){
+            if(world[blinky.y][blinky.x-1] < 2){
+                blinky.x--;
+                displayBlinky();
+            };
     //         if(world[blinky.y][blinky.x-1] == 2){
     //             // BlinkyMoveUP();
     //             console.log('collision: to my left');
@@ -143,8 +145,8 @@
     //             blinky.y--;
     //             displayBlinky();
     //         };
-    //     };
-    // };
+        };
+    };
 
 
 
