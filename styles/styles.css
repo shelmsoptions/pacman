@@ -53,6 +53,22 @@ div#cherries{
     line-height: 30px;
     text-align: center;
 }
+#life_count{
+    border: 1px solid #fff;
+    color: white;
+    width: 40px;
+    height: 30px;
+    font-size: 15px;
+    line-height: 30px;
+    text-align: center;
+}
+p.label{
+    color: white;
+    width: 40px;
+    height: 30px;
+    font-size: 15px;
+    line-height: 30px;
+}
 #points{
     color: #fff;
     font-size: 15px;

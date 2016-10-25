@@ -18,7 +18,8 @@
 
     var pacman = {
         x: 6,
-        y: 5
+        y: 5,
+        life_count: 1
     };
     var blinky = {
         x: 9,
@@ -75,12 +76,16 @@
     function displayScore(){
         document.getElementById('score').innerHTML = score;
     };
+    function dead(){
+        if(!alert('Your Pacman has perished!')){window.location.reload();}
+    }
 
     displayWorld();
     displayPacman();    // initial pacman display - keep in mind that it needs to be displayed AGAIN for each onkeydown
     displayBlinky();
     // displayCherries();
     displayScore();
+
 
 
     document.onkeydown = function(e){
@@ -114,10 +119,20 @@
             score += 50;
             displayScore();
         };
+        var pacloc = pacman.y + "," + pacman.x;
+        var blinkyloc = blinky.y + "," + blinky.x;
+        if(pacloc == blinkyloc){
+            document.getElementById('life_count').innerHTML = '0';
+            // displayPacman();
+            dead();
+            // alert("Your Pacman has perished")
+            // console.log(pacloc, blinkyloc);
+        }
         displayPacman();
     };
 
     setTimeout(displayCherries, 6000);
+
 
 
 // *********   Start ghost testing  *************
