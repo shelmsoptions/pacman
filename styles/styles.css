@@ -1,0 +1,59 @@
+*{
+    margin: 0;
+}
+body{
+    background-color: #000;
+    font-size: 0;  /*  one way to eradicate space between divs - subsequent font-size must be set as px (or pt) */
+}
+div.row div{
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    /*margin: 0;*/
+}
+    div.brick{
+        background-color: blue;
+    }
+    div.coin{
+        background: url('../assets/coin.gif') no-repeat center;
+        /*background-repeat: no-repeat;*/
+        /*background-position: center;*/
+    }
+    div.empty{
+        background-image: none;
+    }
+div#pacman{
+    background: url('../assets/pacman-moving-orange.gif') no-repeat center;
+    background-size: cover;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+}
+div#blinky{
+    background: url('../assets/ghost_red_blinky.gif') no-repeat center;
+    background-size: cover;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+}
+div#cherries{
+    background: url('../assets/cherries.jpg') no-repeat center;
+    background-size: cover;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    visibility: hidden;
+}
+#score{
+    border: 1px solid #fff;
+    color: white;
+    width: 40px;
+    height: 30px;
+    font-size: 15px;
+    line-height: 30px;
+    text-align: center;
+}
+#points{
+    color: #fff;
+    font-size: 15px;
+}
