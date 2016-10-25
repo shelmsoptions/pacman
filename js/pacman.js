@@ -123,17 +123,13 @@
         var blinkyloc = blinky.y + "," + blinky.x;
         if(pacloc == blinkyloc){
             document.getElementById('life_count').innerHTML = '0';
-            // displayPacman();
-            dead();
-            // alert("Your Pacman has perished")
-            // console.log(pacloc, blinkyloc);
+            document.getElementById('pacman').style.background = 'none';
+            setTimeout(dead, 400);
         }
         displayPacman();
     };
 
     setTimeout(displayCherries, 6000);
-
-
 
 // *********   Start ghost testing  *************
     // function startTimer(){};
@@ -143,7 +139,7 @@
     // setTimeout(BlinkyMove, 1000);
     //
     function BlinkyMove(){
-        for(bi = 0; bi < 2; bi++){
+        // for(bi = 0; bi < 2; bi++){
             if(world[blinky.y][blinky.x-1] < 2){
                 blinky.x--;
                 displayBlinky();
@@ -160,7 +156,7 @@
     //             blinky.y--;
     //             displayBlinky();
     //         };
-        };
+        // };
     };
 
 
