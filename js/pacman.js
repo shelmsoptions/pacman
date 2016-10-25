@@ -124,7 +124,7 @@
         if(pacloc == blinkyloc){
             document.getElementById('life_count').innerHTML = '0';
             document.getElementById('pacman').style.background = 'none';
-            setTimeout(dead, 400);
+            setTimeout(dead, 200);
         }
         displayPacman();
     };
@@ -134,14 +134,25 @@
 // *********   Start ghost testing  *************
     // function startTimer(){};
 
-    setInterval(BlinkyMove, 1000);
+    // setInterval(BlinkyMove, 1000);
 
     // setTimeout(BlinkyMove, 1000);
     //
     function BlinkyMove(){
         // for(bi = 0; bi < 2; bi++){
-            if(world[blinky.y][blinky.x-1] < 2){
+            if(world[blinky.y][blinky.x-1] < 2 && world[blinky.y-1][blinky.x] < 2){
+                console.log('the space is  open');
                 blinky.x--;
+                displayBlinky();
+            };
+            if(world[blinky.y][blinky.x+1] < 2 && world[blinky.y+1][blinky.x] < 2){
+                console.log('the space is  open');
+                blinky.x++;
+                displayBlinky();
+            };
+            if(world[blinky.y-1][blinky.x]){
+                console.log('the space is  open');
+                blinky.y--;
                 displayBlinky();
             };
     //         if(world[blinky.y][blinky.x-1] == 2){
