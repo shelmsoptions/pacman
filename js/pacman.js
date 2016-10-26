@@ -131,44 +131,67 @@
 
     setTimeout(displayCherries, 6000);
 
-// *********   Start ghost testing  *************
+// *********   Start Blinky Moves with intent of adding Inky, uh.. and the other 2  *************
     // function startTimer(){};
 
-    // setInterval(BlinkyMove, 1000);
-
+    setInterval(BlinkyMove, 1000);
     // setTimeout(BlinkyMove, 1000);
-    //
+
     function BlinkyMove(){
-        // for(bi = 0; bi < 2; bi++){
-            if(world[blinky.y][blinky.x-1] < 2 && world[blinky.y-1][blinky.x] < 2){
-                console.log('the space is  open');
+        var x = Math.floor((Math.random() * 3));
+        // var x = 0;
+        console.log(x);
+
+        var pacloc = pacman.y + "," + pacman.x;
+        var blinkyloc = blinky.y + "," + blinky.x;
+
+        switch(x){
+            case 0 : if(world[blinky.y][blinky.x-1] < 2){
                 blinky.x--;
-                displayBlinky();
-            };
-            if(world[blinky.y][blinky.x+1] < 2 && world[blinky.y+1][blinky.x] < 2){
-                console.log('the space is  open');
-                blinky.x++;
-                displayBlinky();
-            };
-            if(world[blinky.y-1][blinky.x]){
-                console.log('the space is  open');
+                // console.log(blinky.x--)
+                if(pacloc == blinkyloc){
+                    document.getElementById('life_count').innerHTML = '0';
+                    document.getElementById('pacman').style.background = 'none';
+                    setTimeout(dead, 200);
+                }
+                break;
+            }
+            case 1 : if(world[blinky.y-1][blinky.x] < 2){
                 blinky.y--;
-                displayBlinky();
-            };
-    //         if(world[blinky.y][blinky.x-1] == 2){
-    //             // BlinkyMoveUP();
-    //             console.log('collision: to my left');
-    //             // blinky.y--;
-    //             displayBlinky();
-    //         };
-    //         if(world[blinky.y-1][blinky.x] < 2){
-    //             // BlinkyMoveUP();
-    //             console.log('collision: above');
-    //             blinky.y--;
-    //             displayBlinky();
-    //         };
-        // };
+                // console.log(blinky.y--)
+                if(pacloc == blinkyloc){
+                    document.getElementById('life_count').innerHTML = '0';
+                    document.getElementById('pacman').style.background = 'none';
+                    setTimeout(dead, 200);
+                }
+                break;
+            }
+            case 2 : if(world[blinky.y][blinky.x+1] < 2){
+                blinky.x++;
+                // console.log(blinky.x++)
+                if(pacloc == blinkyloc){
+                    document.getElementById('life_count').innerHTML = '0';
+                    document.getElementById('pacman').style.background = 'none';
+                    setTimeout(dead, 200);
+                }
+                break;
+            }
+            case 3 : if(world[blinky.y+1][blinky.x] < 2){
+                blinky.y++;
+                // console.log(blinky.y++)
+                if(pacloc == blinkyloc){
+                    document.getElementById('life_count').innerHTML = '0';
+                    document.getElementById('pacman').style.background = 'none';
+                    setTimeout(dead, 200);
+                }
+                break;
+            }
+        }
+        displayBlinky();
     };
+
+
+
 
 
 
