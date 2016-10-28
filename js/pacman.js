@@ -15,6 +15,9 @@
         [2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2],
         [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]
     ];
+    // var temp = world;
+    // console.log(temp);
+
     var life_count = 3;
     var active = true;
 
@@ -83,6 +86,9 @@
     function displayLifeCount(){
         document.getElementById('life_count').innerHTML = life_count;
     }
+    function removeCherries(){
+        document.getElementById('cherries').style.visibility = 'hidden';
+    }
 
     displayWorld();
     displayPacman();    // initial pacman display - keep in mind that it needs to be displayed AGAIN for each onkeydown
@@ -133,10 +139,11 @@
             // setTimeout(dead, 100);
             pacman.x = 6;
             pacman.y = 5;
-            displayLifeCount()
+            displayLifeCount();
         };
         if(life_count === 0){
             active = false;
+            removeCherries();
             // document.getElementById('game_over_alert').show();
             document.getElementById('game_over_alert').style.visibility = 'visible';
         }
@@ -173,6 +180,7 @@
                     displayLifeCount();
                     if(life_count === 0){
                         active = false;
+                        removeCherries()
                     }
                     if(active){
                         displayPacman()
@@ -193,6 +201,7 @@
                     displayLifeCount();
                     if(life_count === 0){
                         active = false;
+                        removeCherries()
                     }
                     if(active){
                         displayPacman()
@@ -213,6 +222,7 @@
                     displayLifeCount()
                     if(life_count === 0){
                         active = false;
+                        removeCherries()
                     }
                     if(active){
                         displayPacman()
@@ -233,6 +243,7 @@
                     displayLifeCount()
                     if(life_count === 0){
                         active = false;
+                        removeCherries()
                     }
                     if(active){
                         displayPacman()
@@ -249,7 +260,32 @@
             displayBlinky();
         };
     };
-
+    function reset(){
+        world = [
+            [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
+            [2,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,2],
+            [2,1,1,2,2,2,1,2,1,1,1,1,2,2,2,2,1,2],
+            [2,1,1,1,2,2,1,2,1,1,1,1,1,1,1,1,1,2],
+            [2,1,1,1,1,1,1,1,2,0,0,2,1,2,2,2,1,2],
+            [2,2,2,2,1,1,0,2,2,2,2,2,1,2,2,2,1,2],
+            [2,1,1,1,1,2,1,2,1,1,1,1,1,1,1,1,1,2],
+            [2,1,2,2,1,2,1,1,1,1,1,1,1,1,1,1,1,2],
+            [2,1,1,1,1,2,1,1,1,2,2,1,1,2,2,1,1,2],
+            [2,1,2,2,1,1,1,1,1,2,2,1,1,2,2,1,1,2],
+            [2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2],
+            [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]
+        ];
+        console.log(world);
+        displayWorld();
+        displayPacman();
+        displayBlinky();
+        document.getElementById('game_over_alert').style.visibility = 'hidden';
+        active = true;
+        life_count = 3;
+        displayLifeCount();
+        score = 0;
+        setTimeout(displayCherries, 6000);
+    }
 
     document.getElementById('game_over_alert').style.visibility = 'hidden';
 
