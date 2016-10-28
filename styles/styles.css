@@ -74,15 +74,20 @@ p.label{
     font-size: 15px;
 }
 #world{
-    position: relative;
+    /*position: relative;*/
 }
 #game_over_alert{
-    top: 500px;
-    left: 75px;
+    top: 70px;
+    left: 38px;
     width: 250px;
-    height:75px;
+    /*height:75px;*/
     border-radius: 5px;
     position: absolute;
-    background: #fff;
+    background-color: #fff;
     border: 2px solid blue;
+    /*display: none;*/
+    text-align: center;
+    font-size: 15px;
+    padding: 15px;
+
 }

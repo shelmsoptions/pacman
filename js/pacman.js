@@ -6,7 +6,7 @@
         [2,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,2],
         [2,1,1,2,2,2,1,2,1,1,1,1,2,2,2,2,1,2],
         [2,1,1,1,2,2,1,2,1,1,1,1,1,1,1,1,1,2],
-        [2,1,1,1,1,1,1,2,0,0,0,2,1,2,2,2,1,2],
+        [2,1,1,1,1,1,1,1,2,0,0,2,1,2,2,2,1,2],
         [2,2,2,2,1,1,0,2,2,2,2,2,1,2,2,2,1,2],
         [2,1,1,1,1,2,1,2,1,1,1,1,1,1,1,1,1,2],
         [2,1,2,2,1,2,1,1,1,1,1,1,1,1,1,1,1,2],
@@ -137,6 +137,8 @@
         };
         if(life_count === 0){
             active = false;
+            // document.getElementById('game_over_alert').show();
+            document.getElementById('game_over_alert').style.visibility = 'visible';
         }
         if(active){
             displayPacman();
@@ -249,6 +251,7 @@
     };
 
 
+    document.getElementById('game_over_alert').style.visibility = 'hidden';
 
 
 
