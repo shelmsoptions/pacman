@@ -15,11 +15,12 @@
         [2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2],
         [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]
     ];
+    var life_count = 3;
+    var active = true;
 
     var pacman = {
         x: 6,
-        y: 5,
-        life_count: 1
+        y: 5
     };
     var blinky = {
         x: 9,
@@ -79,12 +80,16 @@
     function dead(){
         if(!alert('Your Pacman has perished!')){window.location.reload();}
     }
+    function displayLifeCount(){
+        document.getElementById('life_count').innerHTML = life_count;
+    }
 
     displayWorld();
     displayPacman();    // initial pacman display - keep in mind that it needs to be displayed AGAIN for each onkeydown
     displayBlinky();
     // displayCherries();
     displayScore();
+    displayLifeCount();
 
 
 
@@ -122,11 +127,21 @@
         var pacloc = pacman.y + "," + pacman.x;
         var blinkyloc = blinky.y + "," + blinky.x;
         if(pacloc == blinkyloc){
-            document.getElementById('life_count').innerHTML = '0';
-            document.getElementById('pacman').style.background = 'none';
-            setTimeout(dead, 200);
+            // document.getElementById('life_count').innerHTML = '0';
+            life_count -= 1;
+            // document.getElementById('pacman').style.background = 'none';
+            // setTimeout(dead, 100);
+            pacman.x = 6;
+            pacman.y = 5;
+            displayLifeCount()
+        };
+        if(life_count === 0){
+            active = false;
         }
-        displayPacman();
+        if(active){
+            displayPacman();
+        }
+
     };
 
     setTimeout(displayCherries, 6000);
@@ -150,9 +165,19 @@
                 blinky.x--;
                 // console.log(blinky.x--)
                 if(pacloc == blinkyloc){
-                    document.getElementById('life_count').innerHTML = '0';
-                    document.getElementById('pacman').style.background = 'none';
-                    setTimeout(dead, 200);
+                    life_count -= 1;
+                    pacman.x = 6;
+                    pacman.y = 5;
+                    displayLifeCount();
+                    if(life_count === 0){
+                        active = false;
+                    }
+                    if(active){
+                        displayPacman()
+                    }
+                    // document.getElementById('life_count').innerHTML = '0';
+                    // document.getElementById('pacman').style.background = 'none';
+                    // setTimeout(dead, 200);
                 }
                 break;
             }
@@ -160,9 +185,19 @@
                 blinky.y--;
                 // console.log(blinky.y--)
                 if(pacloc == blinkyloc){
-                    document.getElementById('life_count').innerHTML = '0';
-                    document.getElementById('pacman').style.background = 'none';
-                    setTimeout(dead, 200);
+                    life_count -= 1;
+                    pacman.x = 6;
+                    pacman.y = 5;
+                    displayLifeCount();
+                    if(life_count === 0){
+                        active = false;
+                    }
+                    if(active){
+                        displayPacman()
+                    }
+                    // document.getElementById('life_count').innerHTML = '0';
+                    // document.getElementById('pacman').style.background = 'none';
+                    // setTimeout(dead, 200);
                 }
                 break;
             }
@@ -170,9 +205,19 @@
                 blinky.x++;
                 // console.log(blinky.x++)
                 if(pacloc == blinkyloc){
-                    document.getElementById('life_count').innerHTML = '0';
-                    document.getElementById('pacman').style.background = 'none';
-                    setTimeout(dead, 200);
+                    life_count -= 1;
+                    pacman.x = 6;
+                    pacman.y = 5;
+                    displayLifeCount()
+                    if(life_count === 0){
+                        active = false;
+                    }
+                    if(active){
+                        displayPacman()
+                    }
+                    // document.getElementById('life_count').innerHTML = '0';
+                    // document.getElementById('pacman').style.background = 'none';
+                    // setTimeout(dead, 200);
                 }
                 break;
             }
@@ -180,14 +225,27 @@
                 blinky.y++;
                 // console.log(blinky.y++)
                 if(pacloc == blinkyloc){
-                    document.getElementById('life_count').innerHTML = '0';
-                    document.getElementById('pacman').style.background = 'none';
-                    setTimeout(dead, 200);
+                    life_count -= 1;
+                    pacman.x = 6;
+                    pacman.y = 5;
+                    displayLifeCount()
+                    if(life_count === 0){
+                        active = false;
+                    }
+                    if(active){
+                        displayPacman()
+                    }
+
+                    // document.getElementById('life_count').innerHTML = '0';
+                    // document.getElementById('pacman').style.background = 'none';
+                    // setTimeout(dead, 200);
                 }
                 break;
             }
         }
-        displayBlinky();
+        if(active){
+            displayBlinky();
+        };
     };
 
 

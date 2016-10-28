@@ -73,3 +73,16 @@ p.label{
     color: #fff;
     font-size: 15px;
 }
+#world{
+    position: relative;
+}
+#game_over_alert{
+    top: 500px;
+    left: 75px;
+    width: 250px;
+    height:75px;
+    border-radius: 5px;
+    position: absolute;
+    background: #fff;
+    border: 2px solid blue;
+}
